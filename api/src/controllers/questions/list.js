@@ -23,7 +23,7 @@ const getList = ({ Question, User }) => async (req, res, next) => {
       .limit(limit)
       .sort(sortQuery);
 
-    return sendList(res, { questions, count, test: 4 });
+    return sendList(res, { questions, count, test: 6 });
   } catch (error) {
     next(error);
   }

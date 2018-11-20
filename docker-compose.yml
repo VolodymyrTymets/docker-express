@@ -1,17 +1,29 @@
 version: "2"
 services:
+  wev:
+    container_name: docker-app-web
+    image: app/web
+    build: ./web
+    volumes:
+      - './web:/usr/src/app/web'
+      - '/usr/src/app/web/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
   api:
     container_name: docker-app-api
     image: app/api
     build: ./api
-    command: node ./bin/www
+    volumes:
+      - './api:/usr/src/app/api'
+      - '/usr/src/app/api/node_modules'
     ports:
       - "3001:3001"
     environment:
-      MONGODB_URI: mongodb://mongo:27017
-      PORT: 3001
-    volumes:
-      - .:/usr/src/ask-apiko-api
+        MONGODB_URI: mongodb://mongo:27017
+        PORT: 3001
     links:
       - mongo
   mongo:
@@ -19,3 +31,4 @@ services:
    image: mongo
    ports:
       - "27018:27017"
+

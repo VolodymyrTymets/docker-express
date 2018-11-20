@@ -1,7 +1,7 @@
 # select version on node js
-FROM node:8
+FROM node:10
 # app dir (in doc container)
-WORKDIR /usr/src/ask-apiko-api
+WORKDIR /usr/src/app/web
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -14,13 +14,13 @@ RUN npm install
 # RUN npm install --only=production
 
 # copy all files to docker imaged
-COPY .. .
+COPY . .
 
 # Define environment variable
 ENV TEST 'hello word'
 
 # use it port to listen
-EXPOSE 3001
+EXPOSE 3000
 
 # run cmd comand
 CMD [ "npm", "start" ]
