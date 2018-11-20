@@ -1,11 +1,12 @@
 version: "2"
 services:
   api:
-    image: ask-apiko-api
-    build: .
+    container_name: docker-app-api
+    image: app/api
+    build: ./api
     command: node ./bin/www
     ports:
-      - "3000:3001"
+      - "3001:3001"
     environment:
       MONGODB_URI: mongodb://mongo:27017
       PORT: 3001
@@ -14,6 +15,7 @@ services:
     links:
       - mongo
   mongo:
+   container_name: mongo
    image: mongo
    ports:
-      - "27017:27017"
+      - "27018:27017"
