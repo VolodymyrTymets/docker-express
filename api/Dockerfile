@@ -9,7 +9,7 @@ WORKDIR /usr/src/app/api
 # copy only images
 COPY package*.json ./
 
-RUN npm install
+RUN rm -rf node_module && rm -f package-lock.json && npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 # Define environment variable
-ENV TEST 'hello word'
+ENV TEST 'hello word server'
 
 # use it port to listen
 EXPOSE 3001
